@@ -1,0 +1,318 @@
+/* ============================================================================
+   DOVE HABITAT — SITE STYLESHEET
+   ----------------------------------------------------------------------------
+   This site's own rules, loaded after the Hark shared stylesheet
+   (https://felipeharker.org/standards/hark.css). Everything else the page
+   uses — tokens, the grid, masthead, sections, tables, definition grids,
+   disclosure rows, plates, the colophon — is the shared standard: this file
+   reads its tokens and adds only what a page of design documentation needs
+   and the standard has no class for. It does not restyle a class the
+   standard defines.
+
+   HOW THIS FILE IS ORGANISED
+      1.  Tokens ................... the two part colours the drawings tint with
+      2.  Rhythm ................... space between blocks inside a section; sub-headings
+      3.  Portrait plates .......... a tall render in the content column
+      4.  Views .................... a grid of small figures
+      5.  Drawings ................. the inline SVG drawings measured from the model
+      6.  Elevations ............... the four walls, side by side, at one scale
+      7.  Responsive ............... the standard's two breakpoints
+   ========================================================================= */
+
+
+/* ============================================================================
+   1. TOKENS
+   The page is ink on white, like every Hark page. The renders and drawings
+   are the work, so they keep their colour: the drawings tint the mount and
+   the key adapter with the same teal and blue the renders use for them.
+   ========================================================================= */
+
+:root {
+  --color-part-mount: #2a9d8f;
+  --color-part-key: #3d7dd8;
+}
+
+
+/* ============================================================================
+   2. RHYTHM
+   A Hark section is mostly one block after another in the content column.
+   This page stacks many — text, a definition grid, a table, a grid of
+   figures — so a figure or a sub-heading that follows another block gets
+   room above it, and text that follows a grid or a table does too.
+   ========================================================================= */
+
+.section > :not(.section-heading, .plate) + .plate,
+.section > :not(.section-heading) + .views,
+.section > :not(.section-heading) + .elevations { margin-top: var(--space-7); }
+
+/* A sub-heading inside a section or an open row — "Key Dimensions",
+   "Parts" — on an <h3>. Set like a plate's title, in ink at table size, so
+   it reads above the uppercase labels of a definition grid rather than as
+   one more of them. */
+.subhead {
+  font-size: var(--size-table);
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  letter-spacing: var(--track-tight);
+  color: var(--color-text);
+  margin: 0 0 var(--space-3);
+}
+
+.section > .subhead { margin-top: var(--space-7); }
+.section > .section-heading + .subhead,
+.section > .plate + .subhead { margin-top: 0; }
+
+.section > :is(.facts, .table-scroll, .views, .elevations, .list, .disclosure) + .body-text {
+  margin-top: var(--space-6);
+}
+
+/* The figures under the abstract paragraph. */
+.abstract .facts { margin-top: var(--space-5); }
+
+/* A caption under a grid of figures belongs to the whole grid, not to
+   its last figure. */
+.section > .views + .caption { margin-top: var(--space-5); }
+
+/* A part's ID in a table cell (MP-1, P3) never breaks at its hyphen. */
+.table .data { white-space: nowrap; }
+
+
+/* ============================================================================
+   3. PORTRAIT PLATES
+   A plate spans the page, which would blow a tall render up to several
+   screens. .plate--portrait lays the plate on the grid instead: the render
+   in the content column, no taller than the window, and its caption on the
+   grid beneath as on any plate.
+
+     <figure class="plate plate--portrait">
+       <img src="…" alt="…" width="880" height="1522">
+       <figcaption>…</figcaption>
+     </figure>
+   ========================================================================= */
+
+.plate--portrait {
+  display: grid;
+  grid-template-columns: var(--grid);
+  column-gap: var(--grid-gap);
+}
+
+.plate.plate--portrait > img {
+  grid-column: content;
+  width: auto;
+  max-width: 100%;
+  max-height: 88vh;
+}
+
+.plate--portrait > figcaption { grid-column: full; }
+
+
+/* ============================================================================
+   4. VIEWS
+   A grid of small figures across the whole width of the page: the parts of
+   the mount, the accessories, the print plates. Each figure is its image
+   or drawing, a title, a line of recorded values, and a caption — any but
+   the first may be left out.
+
+     <div class="views views--four">
+       <figure class="view">
+         <img src="…" alt="…">
+         <figcaption>
+           <h3 class="view-title">MP-1 Back</h3>
+           <p class="view-data">…</p>
+           <p class="caption">…</p>
+         </figcaption>
+       </figure>
+     </div>
+
+   .views--catalog   as many across as fit at 360px or more — three on a wide
+                     screen — each image in a square frame, so the titles line up
+   .views--four      four across, two on a narrow screen
+   .views--pair      two across, one on a phone; a single figure takes half
+   ========================================================================= */
+
+.views {
+  display: grid;
+  gap: var(--space-6) var(--work-gap);
+  align-items: start;
+  margin: 0;
+}
+
+.section > .views { grid-column: full; }
+.section-heading + .views { margin-top: var(--space-5); }
+
+.views--catalog { grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr)); }
+.views--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.views--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.view { margin: 0; min-width: 0; }
+
+.view > img,
+.view > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.views--catalog .view > img {
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.view figcaption { margin-top: var(--space-3); }
+
+/* As a plate's title: a name, at table size. */
+.view-title {
+  font-size: var(--size-table);
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  letter-spacing: var(--track-tight);
+  margin: 0;
+}
+
+/* A title that links to its row below drops the underline until hovered,
+   like any link that is itself a block. */
+.view-title a { text-decoration: none; }
+.view-title a:hover { text-decoration: underline; }
+
+/* The figure's recorded values: a reach, a count, a plate's contents.
+   Items are separated by .sep spans, as in a dateline. */
+.view-data {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--size-data);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-mute);
+  margin: var(--space-1) 0 0;
+}
+
+
+/* ============================================================================
+   5. DRAWINGS
+   Inline <svg> drawings generated from the Rhino model: callouts over a
+   render (.drawing), and measured drawings — a section, front views, a plan
+   — drawn outright (.drawing--measured). Their geometry and sizes are in
+   the markup; their type, line weights and fills are here, on the page's
+   tokens. Text in a measured drawing is a dimension or a part's name, read
+   off the model, so it is set in the data face.
+   ========================================================================= */
+
+.drawing {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* A split drawing in an open row stays within the window, however tall
+   the accessory; it scales down to the left of its frame
+   (preserveAspectRatio="xMinYMin meet" in the markup). */
+.disclosure-body .drawing { max-height: 60vh; }
+
+.drawing text {
+  font-family: var(--font-body);
+  fill: var(--color-text);
+}
+
+.drawing--measured text { font-family: var(--font-mono); }
+
+/* Callouts: the key on a split drawing, a name and a place on the layout. */
+.drawing .mk,
+.drawing .co1 { font-weight: var(--weight-medium); }
+.drawing .co2 { fill: var(--color-text-mute); }
+
+/* Measured drawings. */
+.drawing .dim line { stroke: var(--color-text); stroke-width: 0.18; }
+.drawing .lab { fill: var(--color-text-mute); letter-spacing: 0.04em; }
+.drawing .ws { fill: var(--color-text-mute); }
+
+/* A centre line: long dash, short dash. */
+.drawing .cl {
+  stroke: var(--color-text-mute);
+  stroke-width: 0.2;
+  stroke-dasharray: 2 1 0.4 1;
+}
+
+/* Parts in section and in elevation, tinted by what they are. */
+.drawing .pm {
+  fill: color-mix(in srgb, var(--color-part-mount) 16%, transparent);
+  stroke: var(--color-text);
+  stroke-width: 0.35;
+}
+
+.drawing .pk {
+  fill: color-mix(in srgb, var(--color-part-key) 16%, transparent);
+  stroke: var(--color-text);
+  stroke-width: 0.35;
+}
+
+.drawing .ch {
+  fill: color-mix(in srgb, var(--color-part-mount) 32%, transparent);
+  stroke: var(--color-text);
+  stroke-width: 0.3;
+}
+
+/* Hidden lines: dashed, and lighter for what is behind them. */
+.drawing .hid {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 0.22;
+  stroke-dasharray: 1.4 0.9;
+}
+
+.drawing .hid2 {
+  fill: none;
+  stroke: var(--color-text-mute);
+  stroke-width: 0.18;
+  stroke-dasharray: 0.8 0.8;
+}
+
+/* Bores and holes, cut out of the part. */
+.drawing .cb,
+.drawing .ho {
+  fill: var(--color-bg);
+  stroke: var(--color-text);
+  stroke-width: 0.3;
+}
+
+.drawing .plan {
+  fill: var(--color-surface);
+  stroke: var(--color-text);
+  stroke-width: 0.35;
+}
+
+
+/* ============================================================================
+   6. ELEVATIONS
+   The four walls that carry accessories, unfolded side by side in the
+   content column. Each figure grows in proportion to its wall's width, so
+   the walls stay at one scale on every screen.
+   ========================================================================= */
+
+.elevations {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+}
+
+.elevation { margin: 0; min-width: 0; }
+.elevation--side { flex: 259 1 0; }   /* J, K: 259 units wide in the model export */
+.elevation--back { flex: 637 1 0; }   /* A, B: 637 */
+
+.elevation figcaption { margin-top: var(--space-2); }
+
+
+/* ============================================================================
+   7. RESPONSIVE
+   The standard's two widths: 860px, where its grid becomes one column, and
+   640px, a phone.
+   ========================================================================= */
+
+@media (max-width: 860px) {
+  .views--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .views--pair { grid-template-columns: minmax(0, 1fr); }
+}

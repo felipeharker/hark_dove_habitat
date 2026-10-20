@@ -1,0 +1,39 @@
+# OS / editors
+Thumbs.db
+desktop.ini
+.DS_Store
+~$*
+*.tmp
+# Models, exports, design sources, archives, video: kept on disk, out of git
+*.3dm
+*.3dmbak
+*.rhl
+*.stl
+*.obj
+*.fbx
+*.3ds
+*.c4d
+*.dwg
+*.dxf
+*.exr
+*.psd
+*.ai
+*.zip
+*.rar
+*.7z
+*.mp4
+*.mov
+# Node
+node_modules/
+.next/
+out/
+.env
+.env*.local
+*.log
+# Local agent settings
+.claude/settings.local.json
+# This repo
+# Working files (the model, the STLs, PDFs, renders) stay on disk in source/.
+source/
+# PDFs stay out of the repository for now (hark_web, planning/decisions.md).
+*.pdf
