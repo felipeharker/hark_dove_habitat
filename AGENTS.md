@@ -23,7 +23,11 @@ felipeharker.org; the standard, the decision log and the roadmap live in
    `assets/site.css`, which holds only what this page adds, commented, in
    classes of its own. Never copy the standard; a change to a shared
    component is a change to it, in `hark_web`. No inline `style` attributes,
-   no CSS framework, no build step, no JavaScript.
+   no CSS framework, no build step, no JavaScript of its own. The one script is the standard's too:
+   every page links `https://felipeharker.org/standards/hark.js` straight
+   after its stylesheets, so it is set in the design — sans or serif — the
+   reader chose on felipeharker.org's front page. There is no switch here;
+   the front page is the only place to choose.
 6. **Only `site/` is published.** The model, the STLs, PDFs and other working
    files go in `source/`, which git ignores. No page links a PDF.
 7. **Names.** Anything served is a URL, so it is lowercase kebab-case
