@@ -5,7 +5,7 @@
  *
  *   node tools/check.mjs
  *
- * 1. Pages      every page links the shared stylesheet, carries the links in
+ * 1. Pages      every page links the shared stylesheet and script, carries the links in
  *               tools/site.mjs (LINKS) in its running head and its colophon,
  *               and links the standards.
  * 2. Links      every link, image and stylesheet within this site resolves to
@@ -20,7 +20,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, extname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { LINKS, SITE, STANDARDS, STYLESHEET, resolveUrl, siteLinkHref } from './site.mjs';
+import { LINKS, SCRIPT, SITE, STANDARDS, STYLESHEET, resolveUrl, siteLinkHref } from './site.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SKIP = new Set(['.git', 'node_modules', '.next']);
@@ -63,6 +63,7 @@ if (!existsSync(dir)) {
     if (clientRendered) inBrowser++;
 
     if (SITE.kind === 'static' && !html.includes(`href="${STYLESHEET}"`)) problem(where, `does not link ${STYLESHEET}`);
+    if (!html.includes(`src="${SCRIPT}"`)) problem(where, `does not link ${SCRIPT}`);
     const nav = html.match(/<nav class="site-links"[\s\S]*?<\/nav>/);
     const head = html.match(/<nav class="runhead-links"[\s\S]*?<\/nav>/);
     if (!clientRendered) {
