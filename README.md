@@ -101,7 +101,10 @@ hark_dove_habitat/
   site/                       published, and nothing else
     index.html                the design documentation, as one page
     assets/site.css           what the page adds to the standard: figure grids, drawings, elevations
+    assets/og.jpg             the page's share card: img/split-ph1.webp on white, 1200 x 630 JPEG
     img/                      renders exported from the Rhino model, as WebP
+    robots.txt                allow all; names the sitemap
+    sitemap.xml               the page's address
   source/                     working files, on disk only: git ignores it
 ```
 
@@ -113,6 +116,8 @@ hark_dove_habitat/
 | An accessory | both places it appears in `site/index.html`: its render in the grid, and its `<details>` row |
 | A drawing (callouts, dimensions, sections, the plan, the elevations) | the inline `<svg>` in `site/index.html`, regenerated from the model rather than edited by hand |
 | The figure grids, the drawings, the elevations | `site/assets/site.css`, commented |
+| The title or description | the `<title>` and `<meta name="description">` in `site/index.html`, and the `og:title` and `og:description` under them, which repeat them for the share card |
+| The share card | `site/assets/og.jpg`: one of the page's own renders, centred on a white 1200 x 630 JPEG, since not every site that shows a card reads WebP |
 | Anything shared: type, the grid, tables, plates, the footer | the standard, in `hark_web` |
 
 Images are named in lowercase kebab-case (`cat-bh1.webp`), because anything
@@ -151,5 +156,5 @@ push: no build step, publish directory `site`. The settings are recorded in
 [`render.yaml`](render.yaml).
 
 Its address is dove.felipeharker.org, the service's custom domain: a
-Porkbun CNAME to hark-dove-habitat.onrender.com, which still answers but is
-linked from nowhere.
+Porkbun CNAME to hark-dove-habitat.onrender.com, an address Render no longer
+serves (Render Subdomain: Disabled), so the site has one address.
