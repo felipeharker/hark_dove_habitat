@@ -4,7 +4,7 @@
 bird cage. Every accessory attaches through the same interface, so **any
 accessory fits on any mount** and can be moved or swapped without tools beyond
 a hex key. Its design documentation is a site of its own,
-**https://hark-dove-habitat.onrender.com/**, opened from its tile on the
+**https://dove.felipeharker.org/**, opened from its tile on the
 portfolio, [felipeharker.org](https://felipeharker.org/).
 
 ![The cage with the accessory system installed](site/img/cage-hero.webp)
@@ -150,5 +150,6 @@ A Render static site, `hark-dove-habitat`, deployed from `main` on every
 push: no build step, publish directory `site`. The settings are recorded in
 [`render.yaml`](render.yaml).
 
-The old address, dove-habitat.onrender.com, redirects here, path and all,
-from the `dove-habitat` service, which is kept only for that.
+Its address is dove.felipeharker.org, the service's custom domain: a
+Porkbun CNAME to hark-dove-habitat.onrender.com, which still answers but is
+linked from nowhere.

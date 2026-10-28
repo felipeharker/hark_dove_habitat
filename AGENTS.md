@@ -1,6 +1,6 @@
 # hark_dove_habitat — agent guide
 
-Dove Habitat, https://hark-dove-habitat.onrender.com/: the design
+Dove Habitat, https://dove.felipeharker.org/: the design
 documentation for a modular cage accessory system, as one page. Read
 [`README.md`](README.md) first. It is built to the standard of the sites at
 felipeharker.org; the standard, the decision log and the roadmap live in

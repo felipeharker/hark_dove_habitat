@@ -19,7 +19,7 @@
 import { existsSync, statSync } from 'node:fs';
 import { join, normalize } from 'node:path';
 
-export const SITE = { name: 'Dove Habitat', url: 'https://hark-dove-habitat.onrender.com/', dir: 'site', kind: 'static' };
+export const SITE = { name: 'Dove Habitat', url: 'https://dove.felipeharker.org/', dir: 'site', kind: 'static' };
 
 export const LINKS = [
   { name: 'Portfolio', url: 'https://felipeharker.org/' },
