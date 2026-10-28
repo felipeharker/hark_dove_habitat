@@ -17,9 +17,9 @@ https://felipeharker.org/standards/. The page links
 standard's one script, `https://felipeharker.org/standards/hark.js`, which
 sets the page in the design — sans or serif — the reader chose on
 felipeharker.org's front page. It is a project
-site, not one of the family of sites in every other page's site links: its
-running head and its site links lead home, to the portfolio, and nowhere
-else.
+site in the portfolio's Birding section: its running head and its site
+links are Portfolio, the Ornithology Report and Dove Habitat, as on every
+page of the birding report.
 
 ## Base Cage
 

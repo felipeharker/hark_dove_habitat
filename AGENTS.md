@@ -33,8 +33,8 @@ felipeharker.org; the standard, the decision log and the roadmap live in
 7. **Names.** Anything served is a URL, so it is lowercase kebab-case
    (`img/split-ph1.webp`).
 8. **Links.** Within this site: relative. The running head and the site links
-   lead home to the portfolio, `https://felipeharker.org/`, in the same tab,
-   and nowhere else (`tools/site.mjs`, `LINKS`). To anyone else: absolute,
+   are the Birding section's — Portfolio, the Ornithology Report and Dove
+   Habitat — in the same tab (`tools/site.mjs`, `NAV`). To anyone else: absolute,
    `target="_blank" rel="noopener noreferrer"`.
 9. **Text.** Plain language; headings in Title Case, never numbered. Part and
    plate codes (MP-1, P1) are recorded identifiers, in mono. The page opens

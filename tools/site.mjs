@@ -4,11 +4,12 @@
  *
  *   SITE       this repository's site: its address, and the folder Render
  *              publishes
- *   LINKS      the running head and the site links at the foot of the page.
- *              This is a project site, opened from its tile on the
- *              portfolio, so they lead home and nowhere else. It is not one
- *              of the family of sites in every other hark_ repository's
- *              site links (hark_web, tools/sites.mjs).
+ *   NAV        the running head and the site links at the foot of every
+ *              page: Portfolio, then the pages of this site's section of
+ *              the portfolio's running head (Birding), in order;
+ *              this site's own is "/" and bracketed. Every section's are
+ *              in hark_web's web/standards/docs/components.md, "Running
+ *              head".
  *   STYLESHEET the one shared stylesheet, served by hark_web. Every page links
  *              it by this address; nothing copies it.
  *   SCRIPT     the one shared script, served by hark_web beside the stylesheet.
@@ -21,8 +22,10 @@ import { join, normalize } from 'node:path';
 
 export const SITE = { name: 'Dove Habitat', url: 'https://dove.felipeharker.org/', dir: 'site', kind: 'static' };
 
-export const LINKS = [
+export const NAV = [
   { name: 'Portfolio', url: 'https://felipeharker.org/' },
+  { name: 'Ornithology Report', url: 'https://birds.felipeharker.org/' },
+  { name: 'Dove Habitat', url: SITE.url },
 ];
 
 export const STYLESHEET = 'https://felipeharker.org/standards/hark.css';
