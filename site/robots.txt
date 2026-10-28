@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dove.felipeharker.org/sitemap.xml
