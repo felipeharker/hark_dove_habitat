@@ -6,7 +6,7 @@
  *              publishes
  *   NAV        the running head and the site links at the foot of every
  *              page: Portfolio, then the pages of this site's section of
- *              the portfolio's running head (Birding), in order;
+ *              the portfolio's running head (Personal), in order;
  *              this site's own is "/" and bracketed. Every section's are
  *              in hark_web's web/standards/docs/components.md, "Running
  *              head".
@@ -26,6 +26,7 @@ export const NAV = [
   { name: 'Portfolio', url: 'https://felipeharker.org/' },
   { name: 'Ornithology Report', url: 'https://birds.felipeharker.org/' },
   { name: 'Dove Habitat', url: SITE.url },
+  { name: 'Charmera', url: 'https://charmera.felipeharker.org/' },
 ];
 
 export const STYLESHEET = 'https://felipeharker.org/standards/hark.css';
